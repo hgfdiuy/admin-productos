@@ -9,6 +9,7 @@ describe("Sesion en cache", () => {
   })
 
   it("Reutiliza la sesion en otra prueba", () => {
+    cy.get("#admin").should("be.visible")
     cy.get(".fila-producto").should("have.length", 4)
   })
 })
