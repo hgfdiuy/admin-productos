@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("login").addEventListener("submit", (event) => { event.preventDefault(); login(); });
   document.getElementById("btn-logout").addEventListener("click", logout);
   document.getElementById("form-producto").addEventListener("submit", (event) => { event.preventDefault(); guardarProducto(); });
+  if (localStorage.getItem("sesion") === "activa") {
+    document.getElementById("login").classList.add("oculto");
+    document.getElementById("admin").classList.remove("oculto");
+  }
   cargarProductos();
 });
 
@@ -14,6 +18,7 @@ function login() {
   const c = document.getElementById("clave").value.trim();
   const msg = document.getElementById("login-msg");
   if (u === "admin" && c === "1234") {           // login de demostracion
+    localStorage.setItem("sesion", "activa");
     document.getElementById("login").classList.add("oculto");
     document.getElementById("admin").classList.remove("oculto");
     msg.textContent = "";
@@ -23,6 +28,7 @@ function login() {
   }
 }
 function logout() {
+  localStorage.removeItem("sesion");
   document.getElementById("admin").classList.add("oculto");
   document.getElementById("login").classList.remove("oculto");
   document.getElementById("usuario").value = "";

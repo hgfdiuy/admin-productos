@@ -26,6 +26,20 @@ describe("Admin de Productos", () => {
     cy.get("#login-msg").should("contain", "incorrect")
   })
 
+  it("Recuerda la sesion al recargar y la borra al salir", () => {
+    cy.get("#usuario").type("admin")
+    cy.get("#clave").type("1234")
+    cy.get("#btn-login").click()
+    cy.get("#admin").should("be.visible")
+    cy.reload()
+    cy.get("#admin").should("be.visible")
+    cy.get("#login").should("not.be.visible")
+    cy.get("#btn-logout").click()
+    cy.reload()
+    cy.get("#login").should("be.visible")
+    cy.get("#admin").should("not.be.visible")
+  })
+
   it("Agregar un producto lo anade a la tabla", () => {
     entrar()
     cy.get("#nombre").type("Webcam")
