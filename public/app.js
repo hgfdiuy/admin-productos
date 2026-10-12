@@ -5,12 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("login").addEventListener("submit", (event) => { event.preventDefault(); login(); });
   document.getElementById("btn-logout").addEventListener("click", logout);
   document.getElementById("form-producto").addEventListener("submit", (event) => { event.preventDefault(); guardarProducto(); });
-  /* Ejercicio 4: restauracion desactivada temporalmente para comprobar las pruebas.
   if (localStorage.getItem("sesion") === "activa") {
     document.getElementById("login").classList.add("oculto");
     document.getElementById("admin").classList.remove("oculto");
   }
-  */
   cargarProductos();
 });
 
